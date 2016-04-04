@@ -20,4 +20,10 @@ template<typename T> class LinearStruct{
 			returner = true;
 		return returner;
 	}
+
+	int sizeStruct(int size){
+		if(isEmpity())
+			throw "Pilha vazia";
+		return size;
+	}
 };

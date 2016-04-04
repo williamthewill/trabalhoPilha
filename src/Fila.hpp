@@ -3,12 +3,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "LinearStruct.cpp"
 using namespace std;
 
-template<typename T> class Fila {
+template<typename T> class Fila: public LinearStruct{
 private:
 	/*
-	 * declaração e atribuição da capaciadade maxima da pilha
+	 * declaração e atribuição da capaciadade maxima da fila
 	 * */
 	int capacidade = 0;
 
@@ -16,13 +17,16 @@ private:
 	 * declaração do ponteiro
 	 * */
 	int ponteiro = -1;
+
+	/*
+	 * declara fila
+	 * */
 	T * fila;
 
 public:
 	// Construtor vazio
-	Fila() {
-	}
-
+	Fila() {}
+	Fila(): LinearStruct() {}
 	// construtor setando capacidade do vetor
 	Fila<T>(int capacidade) {
 		this->capacidade = capacidade;
@@ -30,17 +34,18 @@ public:
 	}
 
 	/*
-	 * retorna capacidade da pilha
+	 * retorna capacidade da fila
 	 * */
 	int getCapaciadade() {
 		return capacidade;
 	}
 
 	/*
-	 * função extra que exibe textualmente o tamanho da pilha
+	 * função extra que exibe textualmente o tamanho da fila
 	 * */
 	void tamanhoFila() {
 		cout << "O tamanho da fila é de " << getCapaciadade() << endl;
+
 	}
 
 	/*
@@ -105,11 +110,11 @@ public:
 	}
 
 	/*
-	 * Desloca o topo da pilha para -1
+	 * Desloca o topo da fila para -1
 	 * */
 	void limparFila() {
 		if (FilaVazia()) {
-			throw "A fila está vazia";
+			throw "A fila já consta vazia";
 		}
 		ponteiro = -1;
 	}
