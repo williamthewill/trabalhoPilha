@@ -5,8 +5,8 @@
 #include <vector>
 using namespace std;
 
-template<typename T> class Pilha {
- private:
+template<typename T> class Fila {
+private:
 	/*
 	 * declaração e atribuição da capaciadade maxima da pilha
 	 * */
@@ -16,17 +16,17 @@ template<typename T> class Pilha {
 	 * declaração do ponteiro
 	 * */
 	int ponteiro = -1;
-	T * pilha;
+	T * fila;
 
- public:
+public:
 	// Construtor vazio
-	Pilha() {
+	Fila() {
 	}
 
 	// construtor setando capacidade do vetor
-	Pilha<T>(int capacidade) {
-		this-> capacidade = capacidade;
-		pilha = new T[capacidade];
+	Fila<T>(int capacidade) {
+		this->capacidade = capacidade;
+		fila = new T[capacidade];
 	}
 
 	/*
@@ -39,14 +39,14 @@ template<typename T> class Pilha {
 	/*
 	 * função extra que exibe textualmente o tamanho da pilha
 	 * */
-	void tamanhoPilha() {
-		cout << "O tamanho da pilha é de " << getCapaciadade() << endl;
+	void tamanhoFila() {
+		cout << "O tamanho da fila é de " << getCapaciadade() << endl;
 	}
 
 	/*
 	 * Verifica se pilha atingiu sua capaciadade maxima
 	 * */
-	bool PilhaCheia() {
+	bool FilaCheia() {
 		bool returner = false;
 		if (ponteiro == (capacidade - 1))
 			returner = true;
@@ -56,50 +56,50 @@ template<typename T> class Pilha {
 	/*
 	 * Verifica se a pilha está vazia
 	 * */
-	bool PilhaVazia() {
+	bool FilaVazia() {
 		bool returner = false;
 		if (ponteiro == -1)
 			returner = true;
 		return returner;
 	}
 
-	/*
-	 * Adiciona elemento ao topo da pilha
-	 * */
-	void empilha(T dado) {
-		if (PilhaCheia()) {
-			throw "pilha cheia !!";
-		}
-		pilha[++ponteiro] = dado;
+	void inclui(T dado) {
+		if (FilaCheia())
+			throw "Excedeu a capacidade da fila";
+		fila[++ponteiro] = dado;
 	}
 
-	/*
-	 * Remove elemento do topo da pilha
-	 * */
-	T desempilha() {
-		if (PilhaVazia()) {
-			throw "A pilha está vazia";
+	T retira() {
+		if (FilaVazia())
+			throw "fila vazia";
+		for (int var = 0; var < ponteiro; ++var) {
+			if (FilaVazia())
+				throw "fila vazia";
+			fila[var] = fila[var + 1];
 		}
-		--ponteiro;
-		return pilha[ponteiro+1];
+		return fila[--ponteiro];
 	}
 
 	/*
 	 * retorna o elemento contido no topo da pilha
 	 * */
-	T topo() {
-		if (PilhaVazia()) {
-			throw "A pilha está vazia";
+	T ultimo() {
+		if (FilaVazia()) {
+			throw "A fila está vazia";
 		}
-		return pilha[ponteiro];
+		return fila[ponteiro];
 	}
 
-	/*
-	 * retorna a posição do ultimo elemento da pilha
-	 * */
-	int getPosTopo() {
-		if (PilhaVazia()) {
-			throw "A pilha está vazia";
+	T primeiro() {
+		if (FilaVazia()) {
+			throw "A fila está vazia";
+		}
+		return fila[0];
+	}
+
+	int getUltimo() {
+		if (FilaVazia()) {
+			throw "A fila está vazia";
 		}
 		return ponteiro;
 	}
@@ -107,9 +107,9 @@ template<typename T> class Pilha {
 	/*
 	 * Desloca o topo da pilha para -1
 	 * */
-	void limparPilha() {
-		if (PilhaVazia()) {
-			throw "A pilha está vazia";
+	void limparFila() {
+		if (FilaVazia()) {
+			throw "A fila está vazia";
 		}
 		ponteiro = -1;
 	}

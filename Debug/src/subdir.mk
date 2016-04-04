@@ -5,14 +5,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/Animal.cpp \
+../src/LinearStruct.cpp \
 ../src/Main.cpp 
 
 OBJS += \
 ./src/Animal.o \
+./src/LinearStruct.o \
 ./src/Main.o 
 
 CPP_DEPS += \
 ./src/Animal.d \
+./src/LinearStruct.d \
 ./src/Main.d 
 
 
